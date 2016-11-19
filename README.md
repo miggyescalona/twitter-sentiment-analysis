@@ -9,4 +9,5 @@ A corpus that contains words together with their rates are used to determine a t
 
 
 ---NOTE---<br>
-Due to file size limits, data.json is in a compressed folder and should be unzipped.
+Due to file size limits, the complate data.json file is in a compressed folder and should be unzipped. 
+Otherwise, the smaller version of the data is used by default.
