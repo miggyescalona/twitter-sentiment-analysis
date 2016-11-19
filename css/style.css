@@ -7,7 +7,6 @@ body {
 	 width:100%;
 	 background-color: white;
 	border: 1px solid #d4cdd4;
-	 position: fixed;
 	 z-index:1;
 }
 
@@ -67,7 +66,6 @@ border: 1px solid #d4cdd4;
 -moz-border-radius: 0px 0px 5px 5px;
 -webkit-border-radius: 0px 0px 5px 5px;
 border: 1px solid #d4cdd4;
-margin-bottom: 3%;
 }
 
 #page-number{
@@ -98,12 +96,13 @@ margin-bottom: 3%;
 }
 
 .buttons {
-		margin-top: 6%;
+	margin-top:30px;
 		z-index:1;
-		position: fixed;
 }
 
 #footer #footer-name{
 	text-align:center;
 	margin-bottom: 1%;
 }
+
+
