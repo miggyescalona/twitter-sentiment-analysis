@@ -1,0 +1,109 @@
+body {
+	background-color: #f5f8fa;
+	  width: 100%;
+  height: 100%;
+}
+#header-container{
+	 width:100%;
+	 background-color: white;
+	border: 1px solid #d4cdd4;
+	 position: fixed;
+	 z-index:1;
+}
+
+#header{
+ height:50px;
+ font-family:sans-serif;
+ margin-bottom:10px;
+ width:50%;
+}
+
+#logo{
+	height:45px;
+	width:45px;
+	margin-top:1%;
+}
+
+#header h3{
+	float:left;
+	margin-left:25%;
+}
+
+.tweetdiv{
+	border-radius: 0px 0px 0px 0px;
+	-moz-border-radius: 0px 0px 0px 0px;
+	-webkit-border-radius: 0px 0px 0px 0px;
+	border: 1px solid #d4cdd4;
+
+	padding: 10px;
+	background-color: white;
+	display: none;
+}
+
+.tweetdiv .imgdiv{
+	height: 50px;
+	width:50px;
+	float: right;
+}
+
+.tweetdiv .profimgdiv{
+	 float:left;
+	 margin-right:10px;
+	 height:50px;
+	 width:50px;
+}
+
+
+#tweets0{
+	margin-top: 13%;
+	border-radius: 10px 10px 0px 0px;
+-moz-border-radius: 10px 10px 0px 0px;
+-webkit-border-radius: 10px 10px 0px 0px;
+border: 1px solid #d4cdd4;
+}
+
+#tweets9{
+	border-radius: 0px 0px 5px 5px;
+-moz-border-radius: 0px 0px 5px 5px;
+-webkit-border-radius: 0px 0px 5px 5px;
+border: 1px solid #d4cdd4;
+margin-bottom: 3%;
+}
+
+#page-number{
+	display:none;
+	margin-left:2px;
+	margin-bottom:3px;
+}
+
+#prev{
+	display:none;
+}
+
+#next{
+	display: none;
+}
+
+#toggle-mood{
+	/*margin-top:10px;*/
+	display:none;
+}
+
+#loading {
+	text-align:center;
+    position: absolute; 
+    margin-top:25%;
+    width: 100%; 
+    height: 100%;
+}
+
+.buttons {
+		margin-top: 6%;
+		z-index:1;
+		position: fixed;
+}
+
+#footer #footer-name{
+	text-align:center;
+	margin-bottom: 1%;
+}

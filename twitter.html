@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Twitter Sentiment Analysis</title>
+	<meta name="viewport" content="width=device-width" />
+	<link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="./css/style.css">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto">
+</head>
+<body>
+<div class="container" id="header-container">
+	<div class="container" id="header">
+		<h3>Twitter Sentiment Analysis</h3><img class="img-responsive hidden-sm hidden-xs" src="./images/twitter.png" id="logo">
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-3"></div>
+		<div class="col-md-6" class="alltweets">
+			<div id="loading"><h1>LOADING...</h1></div>
+			<div id="tweets0" class="tweetdiv"><img src="" id="img0" class="imgdiv"><!--<img src="" id="profimg0" class="profimgdiv">--></div>
+			<div id="tweets1" class="tweetdiv"><img src="" id="img1" class="imgdiv"><!--<img src="" id="profimg0" class="profimgdiv">--></div>
+			<div id="tweets2" class="tweetdiv"><img src="" id="img2" class="imgdiv"><!--<img src="" id="profimg0" class="profimgdiv">--></div>
+			<div id="tweets3" class="tweetdiv"><img src="" id="img3" class="imgdiv"><!--<img src="" id="profimg0" class="profimgdiv">--></div>
+			<div id="tweets4" class="tweetdiv"><img src="" id="img4" class="imgdiv"><!--<img src="" id="profimg0" class="profimgdiv">--></div>
+			<div id="tweets5" class="tweetdiv"><img src="" id="img5" class="imgdiv"><!--<img src="" id="profimg0" class="profimgdiv">--></div>
+			<div id="tweets6" class="tweetdiv"><img src="" id="img6" class="imgdiv"><!--<img src="" id="profimg0" class="profimgdiv">--></div>
+			<div id="tweets7" class="tweetdiv"><img src="" id="img7" class="imgdiv"><!--<img src="" id="profimg0" class="profimgdiv">--></div>
+			<div id="tweets8" class="tweetdiv"><img src="" id="img8" class="imgdiv"><!--<img src="" id="profimg0" class="profimgdiv">--></div>
+			<div id="tweets9" class="tweetdiv"><img src="" id="img9" class="imgdiv"><!--<img src="" id="profimg0" class="profimgdiv">--></div>
+		</div>
+		<div class="col-md-3">
+			<div class="buttons">
+				<div id="page-number"><b>Page:</b> 1 of</div>
+				<button type="button" class="btn btn-primary" id="toggle-mood">Toggle Mood</button>
+				<button type="button" class="btn btn-primary" id="prev">Previous</button>
+				<button type="button" class="btn btn-primary" id="next">Next</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container" id="footer">
+		<div class="col-md-3"></div>
+		<div class="col-md-6" id="footer-name">	&#169; Paolo Miguel D. Escalona</div>
+		<div class="col-md-3"></div>
+
+</div>
+</body>
+	<script src="./data/corpus.json"></script>
+	<script src="./data/data.json"></script>
+	<script src="./js/jquery-3.1.1.min.js"></script>
+<script>
+$(document).ready(execute);
+$(document).ready(totalPages);
+$(window).ready(function() {
+    $('#loading').hide();
+});
+function execute(){
+		 initTotalPages();
+		 $('#toggle-mood').click(toggleMood);
+		 $('.btn').delay(0).show(0); 
+		 $('.tweetdiv').delay(0).show(0);  
+		 $('#page-number').delay(0).show(0);
+		 $('#next').click(nextPage);
+		 $('#prev').click(prevPage);
+createTweets(0,10);
+
+}
+function createTweets(a,b){
+
+	  clearList();
+	  var counter = 0;
+	  for(a;a<b;a++){
+
+		var twitterHandle = data[a].user.screen_name;
+		var tweet = data[a].text;
+		var name = data[a].user.name;
+		var time = data[a].user.created_at;
+		var trimtime = time.substring(0, time.indexOf('+'));
+		var average = getAverage(data[a].text);
+		var profileimage = data[a].user.profile_image_url;
+		///FOR CHECKING
+		//$("#profimg"+[counter]).attr('src',profileimage);
+		//////////
+		$("#tweets"+[counter]).append("<div class='hi'>"+"<b>"+name+"</b>"+" "+"@"+twitterHandle+ " " + trimtime + "<br>" +tweet+ "<br>" + "</div>");
+		//$("#img"+[counter]).append('<img src='+'./images/'+getEmotion(average)+'.png>'); 
+		$("#img"+[counter]).attr('src', './images/'+getEmotion(average)+'.png'); 
+		counter++; 
+	}
+	counter = 0;
+	$("#length").append(total); 
+}
+	/*function imgError(image){
+    image.onerror = "";
+    image.src = "./images/noimage.png";
+    img.height = 50+"px";
+    img.widt = 50+"px"
+    return true;
+	}*/
+
+	function clearList(){
+		$('.hi').remove();
+	}
+
+	function getAverage(x){
+		var text = x.split(" ");
+		var total = 0, average = 0, occ = 0;
+		for (index in text){
+
+		var word = text[index].toLowerCase().replace(/[^\w\s]|_/g, "").replace(/\s+/g, " ");
+
+		var result = corpus[word];
+		
+
+		if(result == undefined){
+		}
+
+		else{
+			total = total + result;
+			occ++;
+		}
+	}
+
+	return average = total / occ;
+
+
+	}
+
+   function getEmotion(y){
+   		if(y==0){
+   			return 'Neutral';
+   		}
+   		else if(y>0){
+   			return 'Happy';
+   		}
+   		else if(y<0){
+   			return 'Angry';
+   		}
+   		else{
+   			return 'Neutral';
+   		}
+   }
+
+   function toggleMood(){
+   	$('.tweetdiv .imgdiv').toggle();
+   }
+
+   var a = 0;
+   var b = 10;
+   var pageNumber = 1; 
+
+   function totalPages(x){
+   	var totalTweets = x;
+	var totalTweetsPerPage = 10;
+	var totalPages = (Math.ceil(totalTweets / totalTweetsPerPage));
+	return x;
+	}
+
+	function initTotalPages(){
+		document.getElementById("page-number").innerHTML = "<b>Page: </b>"+pageNumber+" of "+totalPages($(data).length);
+	}
+
+
+   function nextPage(){
+   	 a = a+10;
+   	 b = b+10;
+   	 pageNumber++;
+	 document.getElementById("page-number").innerHTML = "<b>Page: </b>"+pageNumber+" of "+totalPages($(data).length);
+   	 createTweets(a,b);
+   }
+
+   function prevPage(){
+   	if(a==0){
+   	}else{
+   	a = a-10;
+   	b = b-10;
+   	pageNumber--;
+	document.getElementById("page-number").innerHTML = "<b>Page: </b>"+pageNumber+" of "+totalPages($(data).length);
+   	createTweets(a,b);
+   	}
+   }
+
+ 
+
+</script>
+</html>
