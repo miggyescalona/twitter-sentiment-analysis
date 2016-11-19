@@ -8,5 +8,5 @@ On each tweet, there is an analysis whether it is in a positive, negative or neu
 A corpus that contains words together with their rates are used to determine a tweet’s mood. This corpus has been used by many data scientists as an instrument for them to quantify the mood of a tweet.
 
 
----NOTE---
-data.json is in a compressed folder and should be unzipped.
+---NOTE---<br>
+Due to file size limits, data.json is in a compressed folder and should be unzipped.
