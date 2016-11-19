@@ -105,4 +105,19 @@ border: 1px solid #d4cdd4;
 	margin-bottom: 1%;
 }
 
+/* Landscape phones and down */
+@media (max-width: 480px) { 
+    .buttons    {
+      	margin-top:-30px;
+    }
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) { 
+   .buttons    {
+      	margin-top:-30px;
+    }
+}
+
+
 
